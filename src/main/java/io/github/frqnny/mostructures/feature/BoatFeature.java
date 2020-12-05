@@ -1,5 +1,7 @@
 package io.github.frqnny.mostructures.feature;
 
+import java.util.Random;
+
 import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
@@ -13,8 +15,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-
-import java.util.Random;
 
 public class BoatFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier BOAT1 = MoStructures.id("boat/boat1");
@@ -33,7 +33,7 @@ public class BoatFeature extends Feature<DefaultFeatureConfig> {
             Structure structure = world.toServerWorld().getStructureManager().getStructureOrBlank(BOAT1);
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
-            structure.place(world, newPos, null, structurePlacementData, random, 3);
+            structure.place(world, newPos, BlockPos.ORIGIN, structurePlacementData, random, 3);
         }
         return result;
     }

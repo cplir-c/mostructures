@@ -1,5 +1,9 @@
 package io.github.frqnny.mostructures.feature;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import io.github.frqnny.mostructures.ConfiguredFeatures;
 import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.structure.Structure;
@@ -15,10 +19,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
     public static final Identifier VILLAGER_MOAI = MoStructures.id("beach/villager_moai");
@@ -58,13 +58,13 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
                     return false;
                 }
             }
-            
+
             pos = pos.add(0, -3, 0);
             StructureManager manager = world.toServerWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(VILLAGER_MOAI);
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
-            structure.place(world, pos, null, structurePlacementData, random, 3);
+            structure.place(world, pos, BlockPos.ORIGIN, structurePlacementData, random, 3);
         }
 
         return result;

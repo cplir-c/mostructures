@@ -1,5 +1,7 @@
 package io.github.frqnny.mostructures.feature;
 
+import java.util.Random;
+
 import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,8 +19,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-
-import java.util.Random;
 
 
 public class LamppostFeature extends Feature<DefaultFeatureConfig> {
@@ -41,7 +41,9 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             posToWorkOn = posToWorkOn.up();
             block = world.getBlockState(posToWorkOn);
 
-            if (!world.getBlockState(posToWorkOn).getFluidState().isEmpty()) return null;
+            if (!world.getBlockState(posToWorkOn).getFluidState().isEmpty()) {
+                return null;
+            }
         }
 
         return posToWorkOn;
@@ -63,7 +65,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             StructureManager manager = world.toServerWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
-            structure.place(world, newPos, null, structurePlacementData, random, 3);
+            structure.place(world, newPos, BlockPos.ORIGIN, structurePlacementData, random, 3);
             return true;
         } else if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
@@ -72,10 +74,12 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             Structure structure = manager.getStructureOrBlank(lamppost);
 
             BlockPos correctPos = getCorrectNetherHeight(pos, world);
-            if (correctPos == null) return false;
+            if (correctPos == null) {
+                return false;
+            }
             structurePlacementData.setPosition(correctPos);
 
-            structure.place(world, correctPos, null, structurePlacementData, random, 3);
+            structure.place(world, correctPos, BlockPos.ORIGIN, structurePlacementData, random, 3);
             return true;
         }
         return false;

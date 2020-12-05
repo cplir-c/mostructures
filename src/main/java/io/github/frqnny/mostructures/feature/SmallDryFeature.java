@@ -1,5 +1,7 @@
 package io.github.frqnny.mostructures.feature;
 
+import java.util.Random;
+
 import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.Structure;
@@ -16,8 +18,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-
-import java.util.Random;
 
 public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier DEAD_TREE = MoStructures.id("desert/deadtree");
@@ -51,7 +51,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
 
-            structure.place(world, newPos, null, structurePlacementData, random, 3);
+            structure.place(world, newPos, BlockPos.ORIGIN, structurePlacementData, random, 3);
         }
 
         return result;
