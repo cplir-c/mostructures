@@ -58,12 +58,13 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
                     return false;
                 }
             }
-
+            
+            pos = pos.add(0, -3, 0);
             StructureManager manager = world.toServerWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(VILLAGER_MOAI);
             BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            structure.place(world, pos.add(0, -3, 0), structurePlacementData, random);
+            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
+            structure.place(world, pos, null, structurePlacementData, random, 3);
         }
 
         return result;

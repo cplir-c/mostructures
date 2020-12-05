@@ -59,22 +59,23 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
         if (category == Biome.Category.FOREST && !inWater && random.nextBoolean()) {
 
             BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
+            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
             StructureManager manager = world.toServerWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
-            structure.place(world, newPos, structurePlacementData, random);
+            structure.place(world, newPos, null, structurePlacementData, random, 3);
             return true;
         } else if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
+            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
             StructureManager manager = world.toServerWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
             BlockPos correctPos = getCorrectNetherHeight(pos, world);
             if (correctPos == null) return false;
+            structurePlacementData.setPosition(correctPos);
 
-            structure.place(world, correctPos, structurePlacementData, random);
+            structure.place(world, correctPos, null, structurePlacementData, random, 3);
             return true;
         }
         return false;

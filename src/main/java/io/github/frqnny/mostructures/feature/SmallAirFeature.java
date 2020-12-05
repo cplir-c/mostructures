@@ -39,8 +39,8 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
             int yToAdd = Math.max(random.nextInt(100), 45);
             BlockPos finalPos = pos.add(0, yToAdd, 0);
             BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            structure.place(world, finalPos, structurePlacementData, random);
+            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setPosition(BlockPos.ORIGIN);
+            structure.place(world, finalPos, null, structurePlacementData, random, 3);
         }
         return result;
     }
